@@ -1,0 +1,18 @@
+from typing import List
+class Solution:
+	def isCycle(self, v: int, adj: List[List[int]]) -> bool:
+	    def dfs(i,parent,vis,adj):
+	        vis[i]=1
+	        for nextnode in adj[i]:
+	            if vis[nextnode]==0:
+	                if dfs(nextnode,i,vis,adj):
+	                    return True
+	            elif parent!=nextnode:
+	                return True
+	        return False
+		vis=[0]*v
+		for i in range(v):
+		    if vis[i]==0:
+		        if dfs(i,-1,vis,adj):
+		            return True
+		return False
